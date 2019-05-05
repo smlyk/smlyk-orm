@@ -1551,7 +1551,10 @@ public abstract class BaseDaoSupport<T extends Serializable, PK extends Serializ
         List<FieldInfo> getters = TypeUtils.computeGetters(obj.getClass(), null);
         for(int i=0,len=getters.size();i<len;i++){
             FieldInfo fieldInfo = getters.get(i);
-            String name = fieldInfo.getName();
+            //fastjson版本1.2.4
+//            String name = fieldInfo.getName();
+            //fastjson版本1.2.31
+            String name = fieldInfo.toString();
             try {
                 Object value = fieldInfo.get(obj);
                 map.put(name,value);
